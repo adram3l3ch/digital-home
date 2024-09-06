@@ -1,4 +1,4 @@
-import { Rooms, Surveillance } from "../../components";
+import { Devices, Rooms, Surveillance } from "../../components";
 import styles from "./styles.module.scss";
 
 const Dashboard = () => {
@@ -9,6 +9,9 @@ const Dashboard = () => {
             </div>
             <div className={styles.rooms}>
                 <Rooms />
+            </div>
+            <div className={styles.devices}>
+                <Devices />
             </div>
         </section>
     );

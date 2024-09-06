@@ -1,19 +1,26 @@
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1.5fr 1fr;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "surveillance surveillance surveillance surveillance devices devices devices devices rooms rooms";
     gap: 1rem;
     height: 100dvh;
     padding: 1rem;
 
-    .surveillance {
-        grid-column: span 3;
+    > div {
         border-radius: 2rem;
         overflow: hidden;
     }
 
+    .surveillance {
+        grid-area: surveillance;
+    }
+
     .rooms {
-        border-radius: 2rem;
-        overflow: hidden;
+        grid-area: rooms;
+    }
+
+    .devices {
+        grid-area: devices;
     }
 }

@@ -1,0 +1,144 @@
+@import "../../styles/theme";
+@import "../../styles/typography";
+
+.wrapper {
+    height: 100%;
+    background-color: $primary600;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+
+    .title {
+        @extend %caption;
+        color: $primary300;
+    }
+
+    > .details {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+        justify-content: center;
+        margin-block: auto;
+
+        img {
+            flex: 1;
+            height: 100%;
+            max-width: 35rem;
+            overflow: hidden;
+            object-fit: cover;
+        }
+
+        > div {
+            background-color: $neutral;
+            border-radius: 0.5rem;
+            padding: 0.5rem 2rem;
+            align-items: center;
+            text-align: center;
+            position: relative;
+
+            &::before {
+                position: absolute;
+                content: "";
+                height: 0.5rem;
+                aspect-ratio: 1;
+                background-color: $neutral;
+                border-radius: 50%;
+                bottom: 0;
+                left: 50%;
+                translate: -50% 50%;
+            }
+
+            &::after {
+                position: absolute;
+                content: "";
+                border: 3px solid transparent;
+                width: 60%;
+                height: 50%;
+            }
+
+            &:first-of-type {
+                margin-right: -5rem;
+                translate: 0 -2rem;
+
+                &::after {
+                    border-left-color: $neutral;
+                    border-bottom-color: $neutral;
+                    border-radius: 0 0 0 0.5rem;
+                    left: 50%;
+                    top: 100%;
+                    translate: -1px 0;
+                }
+            }
+
+            &:nth-of-type(2) {
+                margin-left: -2rem;
+                translate: 0 2rem;
+
+                &::before {
+                    top: 0;
+                    bottom: initial;
+                    translate: -50% -50%;
+                }
+
+                &::after {
+                    border-top-color: $neutral;
+                    border-right-color: $neutral;
+                    border-radius: 0 0.5rem 0 0;
+                    right: 50%;
+                    bottom: 100%;
+                    width: 60%;
+                    height: 50%;
+                    translate: 1px 0;
+                }
+            }
+
+            > div {
+                &:first-of-type {
+                    @extend %subtitle;
+                }
+                &:nth-of-type(2) {
+                    @extend %caption;
+                    color: $primary300;
+                }
+            }
+        }
+    }
+
+    .stats {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        justify-content: center;
+
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem;
+            padding-right: 2rem;
+            border-radius: 100vmax;
+            background-color: $primary500;
+
+            .icon {
+                height: 3rem;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                background-color: $neutral;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .details {
+                .value {
+                    @extend %subtitle;
+                    margin-bottom: -0.15rem;
+                }
+                .title {
+                    @extend %caption;
+                    color: $primary300;
+                }
+            }
+        }
+    }
+}

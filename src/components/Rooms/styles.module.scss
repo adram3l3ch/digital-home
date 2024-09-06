@@ -3,7 +3,7 @@
 
 .wrapper {
     height: 100%;
-    background: linear-gradient(to bottom, $primary500, $secondary600);
+    background: linear-gradient(to bottom, $primary500 0 25%, $secondary600);
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -32,6 +32,7 @@
         flex-direction: column;
         gap: 0.5rem;
         overflow: auto;
+        margin-top: 1rem;
     }
 
     .room {
@@ -60,7 +61,7 @@
 
         .details {
             .title {
-                @extend %subtile;
+                @extend %subtitle;
                 margin-bottom: 0.15rem;
             }
             .devices {
