@@ -1,5 +1,7 @@
+import { NavigationLayout } from "./components";
+
 const App = () => {
-    return <h1>Hello world</h1>;
+    return <NavigationLayout>Hello world</NavigationLayout>;
 };
 
 export default App;
