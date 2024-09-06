@@ -1,6 +1,8 @@
-import { NavigationLayoutProps, NAVLINKS } from "./types";
+import { NavigationLayoutProps } from "./types";
 import styles from "./styles.module.scss";
 import { RiSettingsLine } from "react-icons/ri";
+import { ROUTES_DATA } from "../../routes";
+import { NavLink, Outlet } from "react-router-dom";
 
 const LOGO =
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F012%2F226%2F005%2Fnon_2x%2Fleaf-black-logo-with-transparent-background-png.png&f=1&nofb=1&ipt=332cb1d7c0ccffcca5046503c289bb3610030c3e63656d27c7d133639f5d223e&ipo=images";
@@ -14,15 +16,17 @@ const NavigationLayout = (props: NavigationLayoutProps) => {
         <div className={styles.navLayout}>
             <nav>
                 <header>
-                    <img src={LOGO} alt="Digital Home" />
+                    <NavLink to="/">
+                        <img src={LOGO} alt="Digital Home" />
+                    </NavLink>
                 </header>
                 <section className={styles.navLinks}>
-                    {NAVLINKS.map(n => (
-                        <a>
+                    {ROUTES_DATA.map(r => (
+                        <NavLink to={r.link} className={({ isActive }) => (isActive ? styles.active : "")} key={r.id}>
                             <div className={styles.navLink}>
-                                <n.Icon size={25} />
+                                <r.Icon size={25} />
                             </div>
-                        </a>
+                        </NavLink>
                     ))}
                 </section>
                 <footer>
@@ -32,7 +36,10 @@ const NavigationLayout = (props: NavigationLayoutProps) => {
                     <img src={USER} alt="John Doe" />
                 </footer>
             </nav>
-            <section className={styles.content}>{children}</section>
+            <section className={styles.content}>
+                {<Outlet />}
+                {children}
+            </section>
         </div>
     );
 };

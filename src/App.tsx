@@ -1,7 +1,7 @@
-import { NavigationLayout } from "./components";
+import { Router } from "./routes";
 
 const App = () => {
-    return <NavigationLayout>Hello world</NavigationLayout>;
+    return <Router />;
 };
 
 export default App;

@@ -20,8 +20,12 @@
     // }
 
     &:hover {
-        background-color: $primary600;
+        @extend %activeNavLink;
     }
+}
+
+%activeNavLink {
+    background-color: $primary600;
 }
 
 .navLayout {
@@ -45,8 +49,16 @@
             gap: 1rem;
             margin-block: auto;
 
-            div {
-                @extend %navLink;
+            a {
+                color: inherit;
+
+                div {
+                    @extend %navLink;
+                }
+
+                &.active div {
+                    @extend %activeNavLink;
+                }
             }
         }
 
@@ -69,7 +81,6 @@
     }
 
     .content {
-        background: rgb(248, 180, 180);
         flex: 1;
         overflow: auto;
         padding: 1rem;
