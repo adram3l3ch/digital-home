@@ -1,0 +1,95 @@
+@import "../../styles/theme";
+@import "../../styles/typography";
+
+.wrapper {
+    height: 100%;
+    background: linear-gradient(to bottom, $primary500, $secondary600);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        svg {
+            fill: $primary300;
+        }
+    }
+
+    hr {
+        border: none;
+        height: 1px;
+        width: 100%;
+        background-color: $primary400;
+        opacity: 0.7;
+    }
+
+    .roomsList {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        overflow: auto;
+    }
+
+    .room {
+        display: flex;
+        align-items: center;
+        text-align: start;
+        gap: 1rem;
+        padding: 0.5rem;
+        border-radius: 100vmax;
+        transition: $smoothTransition;
+
+        &:hover,
+        &:focus {
+            background-color: white;
+        }
+
+        .icon {
+            height: 3.5rem;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background-color: $primary700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .details {
+            .title {
+                @extend %subtile;
+                margin-bottom: 0.15rem;
+            }
+            .devices {
+                @extend %caption;
+                color: $primary300;
+            }
+        }
+
+        > :last-child {
+            margin-inline: auto 0.5rem;
+        }
+    }
+
+    .cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        background-color: $primary100;
+        border-radius: 100vmax;
+        padding: 1rem 2rem;
+        width: 100%;
+        color: $neutral;
+        margin-top: auto;
+        transition: $smoothTransition;
+
+        &:hover {
+            background-color: white;
+            color: $primary100;
+        }
+    }
+}

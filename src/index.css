@@ -8,5 +8,11 @@
 }
 
 :root {
-    font-size: 16px;
+    font-size: 15px;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
 }
