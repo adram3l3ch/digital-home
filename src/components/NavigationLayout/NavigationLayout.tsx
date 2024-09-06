@@ -23,9 +23,7 @@ const NavigationLayout = (props: NavigationLayoutProps) => {
                 <section className={styles.navLinks}>
                     {ROUTES_DATA.map(r => (
                         <NavLink to={r.link} className={({ isActive }) => (isActive ? styles.active : "")} key={r.id}>
-                            <div className={styles.navLink}>
-                                <r.Icon size={25} />
-                            </div>
+                            {({ isActive }) => <div className={styles.navLink}>{isActive ? <r.ActiveIcon size={25} /> : <r.Icon size={25} />}</div>}
                         </NavLink>
                     ))}
                 </section>
@@ -36,10 +34,10 @@ const NavigationLayout = (props: NavigationLayoutProps) => {
                     <img src={USER} alt="John Doe" />
                 </footer>
             </nav>
-            <section className={styles.content}>
+            <main>
                 {<Outlet />}
                 {children}
-            </section>
+            </main>
         </div>
     );
 };
