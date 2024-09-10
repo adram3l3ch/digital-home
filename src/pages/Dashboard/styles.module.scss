@@ -1,13 +1,43 @@
+@import "../../styles/responsive";
+
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-        "surveillance surveillance surveillance surveillance lights lights lights lights rooms rooms"
-        "devices devices devices devices devices speakers speakers speakers speakers speakers";
+    grid-template-columns: 1fr;
     gap: 1rem;
-    height: 100dvh;
     padding: 1rem;
+    height: auto;
+    grid-template-areas: "surveillance" "rooms" "devices" "lights" "speakers";
+
+    @include responsive(md) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "surveillance surveillance"
+            "devices rooms"
+            "lights speakers";
+    }
+
+    @include responsive(lg) {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            "surveillance surveillance surveillance devices devices devices"
+            "rooms rooms lights lights speakers speakers";
+        height: 100dvh;
+    }
+
+    @include responsive(xl) {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas:
+            "surveillance surveillance surveillance rooms"
+            "devices devices lights speakers";
+    }
+
+    @include responsive(xxl) {
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-areas:
+            "surveillance surveillance surveillance surveillance surveillance lights lights lights rooms rooms"
+            "devices devices devices devices devices speakers speakers speakers speakers speakers";
+    }
 
     > div {
         border-radius: 2rem;

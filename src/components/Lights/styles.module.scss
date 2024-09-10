@@ -17,14 +17,9 @@
     }
 
     .lightsList {
-        // display: flex;
-        // align-items: center;
-        // translate: 0 calc(var(--padding) * -1);
-        // gap: 1rem;
-        // justify-content: center;
-        // flex: 1;
         overflow: hidden;
         position: relative;
+        flex: 1;
 
         &::before {
             position: absolute;

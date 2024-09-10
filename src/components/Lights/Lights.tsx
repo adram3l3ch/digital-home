@@ -27,7 +27,7 @@ const Lights = () => {
         changeStatus(selectedLamp.id, e.target.checked);
     };
 
-    const brightness = (selectedLamp.brightness || 0) * 100;
+    const brightness = selectedLamp.status ? (selectedLamp.brightness || 0) * 100 : 0;
 
     const style = { "--value": `${brightness || 0}%` } as { [k: string]: string };
 

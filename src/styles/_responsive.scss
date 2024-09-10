@@ -1,0 +1,24 @@
+$breakpoints: (
+    xs: 300px,
+    sm: 576px,
+    md: 800px,
+    lg: 1300px,
+    xl: 1600px,
+    xxl: 2000px,
+);
+
+@mixin responsive($breakpoint, $container-name: null) {
+    $size: map-get($breakpoints, $breakpoint);
+
+    @if $size {
+        @if $container-name != null {
+            @container #{$container-name} (min-width: $size) {
+                @content;
+            }
+        } @else {
+            @media (min-width: $size) {
+                @content;
+            }
+        }
+    }
+}

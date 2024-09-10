@@ -47,6 +47,8 @@
             inset: 0;
             background-color: $neutral;
             border-radius: inherit;
+            transition: $smoothTransition;
+            transition-timing-function: ease-out;
             transform: translate(calc(-100% + var(--value, 0)), 0);
             cursor: pointer;
         }

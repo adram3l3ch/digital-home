@@ -1,5 +1,6 @@
 @import "../../styles/typography";
 @import "../../styles/theme";
+@import "../../styles/responsive";
 
 %navLink {
     display: flex;
@@ -11,13 +12,6 @@
     aspect-ratio: 1;
     transition: $smoothTransition;
     position: relative;
-
-    // &:not(:first-of-type)::after {
-    //     position: absolute;
-    //     content: "";
-    //     inset: 0;
-    //     background-color: red;
-    // }
 
     &:hover {
         @extend %activeNavLink;
@@ -33,21 +27,38 @@
     height: 100dvh;
 
     nav {
-        // width: $navBarWidth;
+        position: fixed;
+        inset: auto 0 0 0;
+        z-index: 999;
+        background-color: $neutral;
         padding: 1rem;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        overflow: auto;
+
+        @include responsive(md) {
+            position: initial;
+            flex-direction: column;
+            align-items: center;
+        }
 
         header img {
-            width: 3rem;
+            display: none;
+            @include responsive(md) {
+                display: block;
+                width: 3rem;
+            }
         }
 
         .navLinks {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             gap: 1rem;
             margin-block: auto;
+
+            @include responsive(md) {
+                flex-direction: column;
+            }
 
             a {
                 color: inherit;
@@ -64,18 +75,30 @@
 
         footer {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             gap: 1rem;
+            flex: 1;
+
+            @include responsive(md) {
+                flex-direction: column;
+                flex: 0;
+            }
 
             div {
                 @extend %navLink;
             }
             img {
-                height: 3rem;
+                height: 2.5rem;
+                display: block;
                 aspect-ratio: 1;
                 object-fit: cover;
                 border-radius: 100vmax;
+                margin-left: auto;
+
+                @include responsive(md) {
+                    margin-left: 0;
+                }
             }
         }
     }
@@ -83,5 +106,10 @@
     main {
         flex: 1;
         overflow: auto;
+        padding-bottom: 5rem;
+
+        @include responsive(md) {
+            padding-bottom: 0;
+        }
     }
 }

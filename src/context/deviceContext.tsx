@@ -108,7 +108,7 @@ export const DeviceContextProvider = (props: { children: JSX.Element }) => {
     const [devices, setDevices] = useState(DEVICES);
 
     const changeBrightness = (id: string, brightness: number) => {
-        setDevices(ps => ps.map(d => (d.id === id ? (d as SmartLamp).changeBrightness(brightness) : d)));
+        setDevices(ps => ps.map(d => (d.id === id ? (d as SmartLamp).changeBrightness(brightness) && d.changeStatus(brightness !== 0) : d)));
     };
 
     const changeStatus = (id: string, status: boolean) => {
