@@ -8,6 +8,8 @@
 
 .wrapper {
     position: relative;
+    border-radius: 100vmax;
+    overflow: hidden;
 
     .overlay {
         @extend %subtitle;
@@ -25,39 +27,40 @@
         }
     }
 
+    &::after {
+        position: absolute;
+        @extend %header4;
+        content: "|";
+        padding-right: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        color: $primary100;
+        inset: 0;
+        background-color: $neutral;
+        border-radius: inherit;
+        transition: $smoothTransition;
+        transition-timing-function: ease-out;
+        transform: translate(calc(-100% + var(--value, 0)), 0);
+        cursor: pointer;
+        pointer-events: none;
+    }
+
     input {
         appearance: none;
         display: block;
         -webkit-appearance: none;
         background-color: transparent;
         position: relative;
-        border-radius: 100vmax;
+        height: 4rem;
         overflow: hidden;
         width: 100%;
-
-        &::after {
-            position: absolute;
-            @extend %header4;
-            content: "|";
-            padding-right: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            color: $primary100;
-            inset: 0;
-            background-color: $neutral;
-            border-radius: inherit;
-            transition: $smoothTransition;
-            transition-timing-function: ease-out;
-            transform: translate(calc(-100% + var(--value, 0)), 0);
-            cursor: pointer;
-        }
 
         /***** Track Styles *****/
         /***** Chrome, Safari, Opera, and Edge Chromium *****/
         &::-webkit-slider-runnable-track {
             background-color: rgba($color: #fff, $alpha: 0.2);
-            height: 4rem;
+            height: 100%;
             position: relative;
             border-radius: inherit;
             overflow: hidden;
@@ -74,7 +77,7 @@
         /******** Firefox ********/
         &::-moz-range-track {
             background-color: rgba($color: #fff, $alpha: 0.2);
-            height: 4rem;
+            height: 100%;
             position: relative;
             border-radius: inherit;
             overflow: hidden;
@@ -85,6 +88,7 @@
             width: 20px;
             height: 20px;
             background-color: transparent;
+            opacity: 0;
         }
     }
 }
