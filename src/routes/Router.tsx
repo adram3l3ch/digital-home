@@ -10,6 +10,7 @@ const Router = () => {
                 {ROUTES_DATA.map(r => (
                     <Route path={r.link} element={r.Component ? <r.Component /> : <NotFound />} key={r.id} />
                 ))}
+                <Route path="*" element={<NotFound />} />
             </Route>
         </Routes>
     );

@@ -16,3 +16,21 @@ $neutral: hsl(0, 0%, 100%);
 $navBarWidth: 7rem;
 
 $smoothTransition: all 0.2s ease-in-out;
+
+%button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: $primary100;
+    border-radius: 100vmax;
+    padding: 1rem 2rem;
+    width: 100%;
+    color: $neutral;
+    transition: $smoothTransition;
+
+    &:hover {
+        background-color: white;
+        color: $primary100;
+    }
+}

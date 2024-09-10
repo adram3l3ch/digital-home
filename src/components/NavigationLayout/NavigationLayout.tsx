@@ -1,7 +1,6 @@
 import { NavigationLayoutProps } from "./types";
 import styles from "./styles.module.scss";
 import { RiSettingsLine } from "react-icons/ri";
-import { ROUTES_DATA } from "../../routes";
 import { NavLink, Outlet } from "react-router-dom";
 
 const LOGO =
@@ -11,7 +10,7 @@ const USER =
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.wallofcelebrities.com%2Fcelebrity%2Fjohn-doe%2Fpictures%2Fxxlarge%2Fjohn-doe_862803.jpg&f=1&nofb=1&ipt=2cd3bef24f3cb5fa27f41e5ab87114dcfe649957ca8ef77319536f8236c8811f&ipo=images";
 
 const NavigationLayout = (props: NavigationLayoutProps) => {
-    const { children } = props;
+    const { children, routes } = props;
     return (
         <div className={styles.navLayout}>
             <nav>
@@ -21,7 +20,7 @@ const NavigationLayout = (props: NavigationLayoutProps) => {
                     </NavLink>
                 </header>
                 <section className={styles.navLinks}>
-                    {ROUTES_DATA.map(r => (
+                    {routes?.map(r => (
                         <NavLink to={r.link} className={({ isActive }) => (isActive ? styles.active : "")} key={r.id}>
                             {({ isActive }) => (
                                 <div className={styles.navLink}>{isActive ? <r.ActiveIcon size={"1.5rem"} /> : <r.Icon size={"1.5rem"} />}</div>
@@ -30,9 +29,11 @@ const NavigationLayout = (props: NavigationLayoutProps) => {
                     ))}
                 </section>
                 <footer>
-                    <div>
-                        <RiSettingsLine size={"1.5rem"} />
-                    </div>
+                    <NavLink to="/settings">
+                        <div>
+                            <RiSettingsLine size={"1.5rem"} />
+                        </div>
+                    </NavLink>
                     <img src={USER} alt="John Doe" />
                 </footer>
             </nav>

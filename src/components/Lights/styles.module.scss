@@ -1,5 +1,6 @@
 @import "../../styles/theme";
 @import "../../styles/typography";
+@import "../../styles/responsive";
 
 .wrapper {
     height: 100%;
@@ -34,7 +35,13 @@
         img {
             width: 100%;
             object-fit: cover;
-            height: 100%;
+            display: block;
+            aspect-ratio: 1;
+
+            @include responsive(md) {
+                height: 100%;
+                aspect-ratio: none;
+            }
         }
 
         .buttons {
