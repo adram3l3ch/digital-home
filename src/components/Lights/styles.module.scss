@@ -1,0 +1,90 @@
+@import "../../styles/theme";
+@import "../../styles/typography";
+
+.wrapper {
+    height: 100%;
+    background-color: $primary400;
+    color: $neutral;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    --padding: 2rem;
+
+    header {
+        position: absolute;
+        inset: var(--padding) var(--padding) auto var(--padding);
+        z-index: 99;
+    }
+
+    .lightsList {
+        // display: flex;
+        // align-items: center;
+        // translate: 0 calc(var(--padding) * -1);
+        // gap: 1rem;
+        // justify-content: center;
+        // flex: 1;
+        overflow: hidden;
+        position: relative;
+
+        &::before {
+            position: absolute;
+            content: "";
+            inset: 0;
+            background-color: $primary100;
+            pointer-events: none;
+            opacity: calc(100% - var(--value));
+            mix-blend-mode: darken;
+        }
+
+        img {
+            width: 100%;
+            object-fit: cover;
+            height: 100%;
+        }
+
+        .buttons {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--padding);
+            max-width: 40rem;
+            margin-inline: auto;
+
+            button {
+                color: $neutral;
+                height: 3rem;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: $smoothTransition;
+                z-index: 2;
+
+                &:hover {
+                    background-color: $primary700;
+                    color: $primary100;
+                }
+            }
+        }
+    }
+
+    .details {
+        padding: var(--padding);
+        background-color: rgba($color: #ffffff, $alpha: 0.1);
+        border-radius: 1.5rem;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+
+            .title {
+                @extend %subtitle;
+            }
+        }
+    }
+}

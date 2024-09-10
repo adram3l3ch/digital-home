@@ -1,0 +1,38 @@
+@import "../../styles/theme";
+
+.wrapper {
+    --height: 2rem;
+
+    label {
+        height: var(--height);
+        aspect-ratio: 7/4;
+        padding: 0.25rem;
+        background-color: $neutral;
+        display: block;
+        border-radius: 100vmax;
+        position: relative;
+        cursor: pointer;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0.25rem;
+            right: initial;
+            left: 0.25;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background-color: $primary100;
+            transition: $smoothTransition;
+        }
+    }
+
+    input {
+        display: none;
+    }
+
+    input:checked + label::after {
+        inset: 0.25rem;
+        left: initial;
+        right: 0.25rem;
+    }
+}

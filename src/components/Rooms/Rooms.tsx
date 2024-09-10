@@ -16,13 +16,13 @@ const Rooms = () => {
                 {rooms.map(r => (
                     <button className={styles.room} key={r.id}>
                         <div className={styles.icon}>
-                            <r.Icon size={20} />
+                            <r.Icon size={"1.5rem"} />
                         </div>
                         <div className={styles.details}>
                             <div className={styles.title}>{r.title}</div>
                             <div className={styles.devices}>{r.devices.length} device(-s)</div>
                         </div>
-                        <MdOutlineChevronRight size={20} />
+                        <MdOutlineChevronRight size={"1.5rem"} />
                     </button>
                 ))}
             </div>

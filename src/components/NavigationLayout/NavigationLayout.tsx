@@ -23,13 +23,15 @@ const NavigationLayout = (props: NavigationLayoutProps) => {
                 <section className={styles.navLinks}>
                     {ROUTES_DATA.map(r => (
                         <NavLink to={r.link} className={({ isActive }) => (isActive ? styles.active : "")} key={r.id}>
-                            {({ isActive }) => <div className={styles.navLink}>{isActive ? <r.ActiveIcon size={25} /> : <r.Icon size={25} />}</div>}
+                            {({ isActive }) => (
+                                <div className={styles.navLink}>{isActive ? <r.ActiveIcon size={"1.5rem"} /> : <r.Icon size={"1.5rem"} />}</div>
+                            )}
                         </NavLink>
                     ))}
                 </section>
                 <footer>
                     <div>
-                        <RiSettingsLine size={25} />
+                        <RiSettingsLine size={"1.5rem"} />
                     </div>
                     <img src={USER} alt="John Doe" />
                 </footer>

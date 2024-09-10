@@ -3,12 +3,11 @@ import { useDeviceContext } from "../../context";
 import styles from "./styles.module.scss";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { FiBatteryCharging } from "react-icons/fi";
-
-const VACUUM = "https://pngimg.com/d/robot_vacuum_PNG40.png";
+import { Cleaner } from "../../utils";
 
 const Devices = () => {
     const { devices } = useDeviceContext();
-    const vacuum = devices.find(d => d.category === "cleaner")!;
+    const vacuum = devices.find(d => d.category === "cleaner")! as Cleaner;
     return (
         <section className={styles.wrapper}>
             <header>
@@ -20,7 +19,7 @@ const Devices = () => {
                     <div>{(vacuum.filter_status || 0) * 100}%</div>
                     <div>Filter Status</div>
                 </div>
-                <img src={VACUUM} alt="vacuum" />
+                <img src={vacuum.image} alt="vacuum" />
                 <div>
                     <div>10:00 AM</div>
                     <div>Next Cleaning</div>

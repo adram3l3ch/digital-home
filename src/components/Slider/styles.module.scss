@@ -1,0 +1,88 @@
+@import "../../styles/theme";
+@import "../../styles/typography";
+
+// %track {
+//     background-color: rgba($color: #fff, $alpha: 0.2);
+//     height: 5rem;
+// }
+
+.wrapper {
+    position: relative;
+
+    .overlay {
+        @extend %subtitle;
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        z-index: 99;
+        pointer-events: none;
+
+        :last-child {
+            margin-left: auto;
+        }
+    }
+
+    input {
+        appearance: none;
+        display: block;
+        -webkit-appearance: none;
+        background-color: transparent;
+        position: relative;
+        border-radius: 100vmax;
+        overflow: hidden;
+        width: 100%;
+
+        &::after {
+            position: absolute;
+            @extend %header4;
+            content: "|";
+            padding-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            color: $primary100;
+            inset: 0;
+            background-color: $neutral;
+            border-radius: inherit;
+            transform: translate(calc(-100% + var(--value, 0)), 0);
+            cursor: pointer;
+        }
+
+        /***** Track Styles *****/
+        /***** Chrome, Safari, Opera, and Edge Chromium *****/
+        &::-webkit-slider-runnable-track {
+            background-color: rgba($color: #fff, $alpha: 0.2);
+            height: 4rem;
+            position: relative;
+            border-radius: inherit;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        &::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background-color: transparent;
+        }
+
+        /******** Firefox ********/
+        &::-moz-range-track {
+            background-color: rgba($color: #fff, $alpha: 0.2);
+            height: 4rem;
+            position: relative;
+            border-radius: inherit;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        &::-moz-range-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background-color: transparent;
+        }
+    }
+}

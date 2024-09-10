@@ -2,7 +2,9 @@
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: 1fr 1fr;
-    grid-template-areas: "surveillance surveillance surveillance surveillance devices devices devices devices rooms rooms";
+    grid-template-areas:
+        "surveillance surveillance surveillance surveillance lights lights lights lights rooms rooms"
+        "devices devices devices devices devices speakers speakers speakers speakers speakers";
     gap: 1rem;
     height: 100dvh;
     padding: 1rem;
@@ -22,5 +24,9 @@
 
     .devices {
         grid-area: devices;
+    }
+
+    .lights {
+        grid-area: lights;
     }
 }
