@@ -53,13 +53,17 @@ a {
     }
 
     @include responsive(md) {
+        padding: 2rem;
+    }
+
+    @include responsive(lg) {
         padding: 5rem;
     }
 
     .app {
         width: 100%;
         max-width: 1800px;
-        max-height: 1000px;
+        max-height: 1200px;
         height: 100%;
         overflow: hidden;
         flex-grow: 0;
