@@ -1,4 +1,5 @@
 @import "../../styles/responsive";
+@import "../../styles/theme";
 
 .wrapper {
     display: grid;
@@ -7,6 +8,7 @@
     padding: 1rem;
     height: auto;
     grid-template-areas: "surveillance" "rooms" "devices" "lights" "speakers";
+    background-color: $neutral;
 
     @include responsive(md) {
         grid-template-columns: repeat(2, 1fr);
@@ -22,7 +24,7 @@
         grid-template-areas:
             "surveillance surveillance surveillance devices devices devices"
             "rooms rooms lights lights speakers speakers";
-        height: 100dvh;
+        height: 100%;
     }
 
     @include responsive(xl) {

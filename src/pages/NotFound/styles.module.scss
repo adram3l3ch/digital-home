@@ -2,7 +2,7 @@
 @import "../../styles/responsive";
 
 .wrapper {
-    height: 100dvh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,14 +11,15 @@
     gap: 0.5rem;
     color: $primary300;
     position: relative;
-    background: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F010%2F177%2F036%2Foriginal%2F3d-abstract-art-free-png.png&f=1&nofb=1&ipt=07c9e412cb576d490008d6be0cb2b737448a9935adc44e447d731ab6a5b15fb3&ipo=images)
+    background: $neutral
+        url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F010%2F177%2F036%2Foriginal%2F3d-abstract-art-free-png.png&f=1&nofb=1&ipt=07c9e412cb576d490008d6be0cb2b737448a9935adc44e447d731ab6a5b15fb3&ipo=images)
         no-repeat;
     background-position: center;
     backdrop-filter: blur(50px);
 
     @include responsive(md) {
         background-position: right bottom;
-        background-size: 70vw;
+        background-size: 65vw;
     }
 
     .title {

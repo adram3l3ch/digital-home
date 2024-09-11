@@ -65,6 +65,8 @@ const Speakers = () => {
             speaker.audio.removeEventListener("pause", () => updateSpeakerStatus(false));
             speaker.audio.removeEventListener("timeupdate", updateSpeakerTime);
             speaker.audio.removeEventListener("ended", handlePlayNext);
+            speaker.audio.remove();
+            updateSpeakerStatus(false);
         };
     }, [updateSpeakerStatus, speaker.audio, updateSpeakerTime, handlePlayNext]);
 
@@ -119,7 +121,7 @@ const Speakers = () => {
                     {speaker.time_string} | <span>{speaker.current_position_string}</span>
                 </div>
                 <img src={speaker.song?.album_cover} />
-                <CircularInput value={timePercent} onChange={handleSeek} style={{ width: "20rem", height: "20rem" }}>
+                <CircularInput value={timePercent} onChange={handleSeek} style={{ width: "13rem", height: "13rem" }}>
                     <CircularTrack stroke={colors.primary500} strokeWidth="2px" />
                     <CircularProgress stroke={colors.primary100} strokeWidth="2px" />
                     {speaker.time && <CircularThumb fill={colors.primary100} r="4px" />}

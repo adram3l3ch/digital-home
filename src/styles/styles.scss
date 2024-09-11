@@ -1,0 +1,65 @@
+@import "./theme";
+@import "./responsive";
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Hanken Grotesk", sans-serif;
+    font-optical-sizing: auto;
+}
+
+:root {
+    font-size: 13px;
+
+    @include responsive(md) {
+        font-size: 10.5px;
+    }
+
+    @include responsive(xl) {
+        font-size: 13px;
+    }
+
+    @include responsive(xxl) {
+        font-size: 14px;
+    }
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+}
+
+.page {
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: $primary500;
+
+    @include responsive(md) {
+        padding: 5rem;
+    }
+
+    .app {
+        width: 100%;
+        max-width: 1800px;
+        max-height: 1000px;
+        height: 100%;
+        overflow: hidden;
+        flex-grow: 0;
+        box-shadow: 0 10px 40px -10px $neutral;
+
+        @include responsive(md) {
+            border-radius: 2rem;
+        }
+    }
+}
