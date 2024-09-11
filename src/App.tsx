@@ -6,6 +6,9 @@ const App = () => (
         <div className="app">
             <Router />
         </div>
+        <div className="attribution">
+            Developed by <a href="https://github.com/adram3l3ch">adram3l3ch</a> & Designed by <a href="https://dribbble.com/haloweb">Halo UI UX</a>
+        </div>
     </div>
 );
 

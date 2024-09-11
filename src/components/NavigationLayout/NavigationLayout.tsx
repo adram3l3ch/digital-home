@@ -15,13 +15,13 @@ const NavigationLayout = (props: NavigationLayoutProps) => {
         <div className={styles.navLayout}>
             <nav>
                 <header>
-                    <NavLink to="/">
+                    <NavLink to="/" title="Digital Home">
                         <img src={LOGO} alt="Digital Home" />
                     </NavLink>
                 </header>
                 <section className={styles.navLinks}>
                     {routes?.map(r => (
-                        <NavLink to={r.link} className={({ isActive }) => (isActive ? styles.active : "")} key={r.id}>
+                        <NavLink to={r.link} className={({ isActive }) => (isActive ? styles.active : "")} key={r.id} title={r.title}>
                             {({ isActive }) => (
                                 <div className={styles.navLink}>{isActive ? <r.ActiveIcon size={"1.5rem"} /> : <r.Icon size={"1.5rem"} />}</div>
                             )}

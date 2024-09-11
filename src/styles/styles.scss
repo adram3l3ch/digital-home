@@ -1,5 +1,6 @@
 @import "./theme";
 @import "./responsive";
+@import "./typography";
 
 *,
 *::after,
@@ -9,6 +10,8 @@
     box-sizing: border-box;
     font-family: "Hanken Grotesk", sans-serif;
     font-optical-sizing: auto;
+    scrollbar-width: thin;
+    scrollbar-color: $primary500 $primary700;
 }
 
 :root {
@@ -20,10 +23,6 @@
 
     @include responsive(xl) {
         font-size: 13px;
-    }
-
-    @include responsive(xxl) {
-        font-size: 14px;
     }
 }
 
@@ -40,10 +39,18 @@ a {
 .page {
     height: 100dvh;
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     background-color: $primary500;
+
+    .attribution {
+        @extend %subtitle;
+        font-weight: 400;
+        color: $primary100;
+    }
 
     @include responsive(md) {
         padding: 5rem;

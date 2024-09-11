@@ -128,19 +128,19 @@ const Speakers = () => {
                 </CircularInput>
             </div>
             <div className={styles.controls}>
-                <button onClick={handleToggleLoop} className={speaker.loop ? styles.loop : ""}>
+                <button onClick={handleToggleLoop} className={speaker.loop ? styles.loop : ""} title="Loop">
                     <TfiLoop size="1.5rem" />
                 </button>
-                <button onClick={handlePlayPrevious}>
+                <button onClick={handlePlayPrevious} title="Previous">
                     <TbPlayerTrackPrevFilled size="1.5rem" />
                 </button>
-                <button onClick={handleToggleStatus} className={styles.playPause}>
+                <button onClick={handleToggleStatus} className={styles.playPause} title="Play/Pause">
                     {speaker.playing ? <IoPause size="2rem" /> : <IoPlay size="2rem" />}
                 </button>
-                <button onClick={handlePlayNext}>
+                <button onClick={handlePlayNext} title="Next">
                     <TbPlayerTrackNextFilled size="1.5rem" />
                 </button>
-                <button onClick={handleToggleShuffle} className={speaker.shuffle ? styles.shuffle : ""}>
+                <button onClick={handleToggleShuffle} className={speaker.shuffle ? styles.shuffle : ""} title="Shuffle">
                     <TfiControlShuffle size="1.5rem" />
                 </button>
             </div>

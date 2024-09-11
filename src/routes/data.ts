@@ -42,9 +42,9 @@ export const ROUTES_DATA = [
         ActiveIcon: IoShieldCheckmark,
     },
     {
-        id: "notification",
-        title: "Notification",
-        link: "/notification",
+        id: "notifications",
+        title: "Notifications",
+        link: "/notifications",
         Icon: IoMdNotificationsOutline,
         ActiveIcon: IoMdNotifications,
     },

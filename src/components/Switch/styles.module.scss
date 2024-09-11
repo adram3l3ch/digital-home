@@ -27,7 +27,11 @@
     }
 
     input {
-        display: none;
+        appearance: none;
+    }
+
+    input:focus + label {
+        outline: 1px solid black;
     }
 
     input:checked + label::after {
