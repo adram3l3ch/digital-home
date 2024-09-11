@@ -8,11 +8,11 @@ import { DeviceContextProvider } from "./context";
 const root = createRoot(document.getElementById("root")!);
 
 root.render(
-    <StrictMode>
-        <BrowserRouter>
-            <DeviceContextProvider>
-                <App />
-            </DeviceContextProvider>
-        </BrowserRouter>
-    </StrictMode>,
+    // <StrictMode>
+    <BrowserRouter>
+        <DeviceContextProvider>
+            <App />
+        </DeviceContextProvider>
+    </BrowserRouter>,
+    // </StrictMode>,
 );

@@ -30,6 +30,7 @@
             pointer-events: none;
             opacity: calc(100% - var(--value));
             mix-blend-mode: darken;
+            transition: $smoothTransition;
         }
 
         img {
