@@ -1,10 +1,10 @@
 name: Deploy Vite App to GitHub Pages
 
-# Triggers the workflow on push to the 'main' branch
+# Trigger the workflow on push to the 'main' branch
 on:
     push:
         branches:
-            - main # Or replace 'main' with your branch name if it's different
+            - main # Or your target branch
 
 # Define the job to build and deploy the Vite app
 jobs:
@@ -20,7 +20,7 @@ jobs:
             - name: Set up Node.js
               uses: actions/setup-node@v3
               with:
-                  node-version: "18" # Specify your desired Node.js version here
+                  node-version: "18" # Specify your desired Node.js version
 
             # Step 3: Install npm dependencies
             - name: Install dependencies
@@ -30,9 +30,9 @@ jobs:
             - name: Build the Vite app
               run: npm run build
 
-            # Step 5: Deploy the `dist` folder to GitHub Pages
+            # Step 5: Deploy to GitHub Pages
             - name: Deploy to GitHub Pages
-              run: actions/deploy-pages@v4
+              uses: actions/deploy-pages@v4 # Update to v4
               with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically create this token
-                  publish_dir: ./dist # The folder where Vite outputs the build (default is 'dist')
+                  branch: gh-pages # Branch to deploy to
+                  folder: dist # Folder where Vite outputs the build (default is 'dist')
