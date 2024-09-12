@@ -11,6 +11,10 @@ jobs:
     build:
         runs-on: ubuntu-latest # The virtual machine environment to run the workflow
 
+        permissions:
+            id-token: write # Required for deployment
+            contents: read # Allows reading the repository contents
+
         steps:
             # Step 1: Check out the repository code
             - name: Checkout code
@@ -32,7 +36,7 @@ jobs:
 
             # Step 5: Deploy to GitHub Pages
             - name: Deploy to GitHub Pages
-              uses: actions/deploy-pages@v4 # Update to v4
+              uses: actions/deploy-pages@v4
               with:
                   branch: gh-pages # Branch to deploy to
                   folder: dist # Folder where Vite outputs the build (default is 'dist')
