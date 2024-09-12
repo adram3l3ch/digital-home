@@ -6,7 +6,7 @@ import { DeviceContextProvider } from "./context";
 const root = createRoot(document.getElementById("root")!);
 
 root.render(
-    <BrowserRouter>
+    <BrowserRouter basename="/digital-home">
         <DeviceContextProvider>
             <App />
         </DeviceContextProvider>
