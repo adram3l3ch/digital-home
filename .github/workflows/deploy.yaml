@@ -31,4 +31,8 @@ jobs:
               run: npm run build
 
             # Step 5: Deploy the `dist` folder to GitHub Pages
-            -
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically create this token
+                  publish_dir: ./dist # The folder where Vite outputs the build (default is 'dist')
