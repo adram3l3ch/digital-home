@@ -30,7 +30,7 @@
         appearance: none;
     }
 
-    input:focus + label {
+    input:focus-visible + label {
         outline: 1px solid black;
     }
 

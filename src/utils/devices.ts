@@ -49,7 +49,7 @@ export class Speaker extends Device {
     public audio: HTMLAudioElement;
     public time_string = "";
     public current_position_string = "";
-    public loop = false;
+    public loop = true;
     public shuffle = false;
     constructor(
         public id: string,
@@ -58,8 +58,6 @@ export class Speaker extends Device {
         private track?: string,
         public playlist = [] as { id: string; album_cover: string; src: string }[],
         public playing = false,
-        public time = 0,
-        public current_position = 0,
         public status = false,
     ) {
         super(id, "speaker", title, image, status);
@@ -76,7 +74,6 @@ export class Speaker extends Device {
 
     changePlayingStatus(status: boolean) {
         if (status === this.playing) return this;
-        this.time = this.audio.duration;
         this.playing = status;
         if (status) {
             this.audio.play();
@@ -85,11 +82,13 @@ export class Speaker extends Device {
         return this;
     }
 
+    initialize() {
+        return this.changePosition();
+    }
+
     changePosition() {
-        this.time = this.audio.duration;
-        this.current_position = this.audio.currentTime;
-        this.current_position_string = this.getTimeString(this.current_position);
-        this.time_string = this.getTimeString(this.time);
+        this.current_position_string = this.getTimeString(this.audio.currentTime);
+        this.time_string = this.getTimeString(this.audio.duration);
         return this;
     }
 
@@ -101,7 +100,7 @@ export class Speaker extends Device {
 
     get song() {
         const song = this.playlist.find(s => s.id === this.track);
-        return song;
+        return { ...song, audio: this.audio };
     }
 
     private changeTrack(by: 1 | -1) {

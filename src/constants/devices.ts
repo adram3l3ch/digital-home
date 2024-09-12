@@ -53,7 +53,7 @@ export const DEVICES = [
         "speaker",
         "SONY HT-S40R",
         "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi5.walmartimages.com%2Fasr%2F8a12461d-9a2b-4818-a624-441de04ac907.415d4f2d812c1cd52876371facb0f256.jpeg&f=1&nofb=1&ipt=3476e598653e9d4a658ad41b5a2e8befa3759190842148f2a312cb435adbb832&ipo=images",
-        "4",
+        "5",
         PLAYLIST,
     ),
 ];

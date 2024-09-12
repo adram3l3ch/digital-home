@@ -1,118 +1,68 @@
 import { Switch } from "../Switch";
 import styles from "./styles.module.scss";
 import { useDeviceContext } from "../../context";
-import { Cleaner, SmartLamp, Speaker } from "../../utils";
-import { ChangeEvent, useCallback, useEffect } from "react";
+import { Speaker } from "../../utils";
+import { ChangeEvent, useEffect } from "react";
 import { CircularInput, CircularProgress, CircularTrack, CircularThumb } from "react-circular-input";
 import { colors } from "../../constants";
 import { IoPause, IoPlay } from "react-icons/io5";
 import { TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled } from "react-icons/tb";
 import { TfiControlShuffle, TfiLoop } from "react-icons/tfi";
 
-const isSpeaker = (device: Speaker | Cleaner | SmartLamp): device is Speaker => {
-    return device.category === "speaker";
-};
-
 const Speakers = () => {
-    const { devices, setDevices } = useDeviceContext();
+    const {
+        devices,
+        changeStatus,
+        handlePlayNext,
+        handlePlayPrevious,
+        handleToggleLoop,
+        handleToggleShuffle,
+        initializeSong,
+        updateSpeakerTime,
+        updateSpeakerPlayingStatus,
+    } = useDeviceContext();
+
     const speaker = devices.find(d => d.id === "speaker") as Speaker;
 
-    const updateSpeakerStatus = useCallback(
-        (status: boolean) => {
-            setDevices(ps => {
-                const speaker = ps.find(d => d.category === "speaker") as Speaker;
-                const a = speaker.changePlayingStatus(status);
-                return ps.map(d => (isSpeaker(d) ? a : d));
-            });
-        },
-        [setDevices],
-    );
-
-    const updateSpeakerTime = useCallback(() => {
-        setDevices(ps => {
-            const speaker = ps.find(d => d.category === "speaker") as Speaker;
-            const a = speaker.changePosition();
-            return ps.map(d => (isSpeaker(d) ? a : d));
-        });
-    }, [setDevices]);
-
-    const handlePlayNext = useCallback(() => {
-        setDevices(ps => {
-            const speaker = ps.find(d => d.category === "speaker") as Speaker;
-            const a = speaker.playNext();
-            return ps.map(d => (isSpeaker(d) ? a : d));
-        });
-    }, [setDevices]);
-
-    const handlePlayPrevious = useCallback(() => {
-        setDevices(ps => {
-            const speaker = ps.find(d => d.category === "speaker") as Speaker;
-            const a = speaker.playPrevious();
-            return ps.map(d => (isSpeaker(d) ? a : d));
-        });
-    }, [setDevices]);
-
     useEffect(() => {
-        speaker.audio.addEventListener("loadeddata", () => updateSpeakerStatus(true));
-        speaker.audio.addEventListener("play", () => updateSpeakerStatus(true));
-        speaker.audio.addEventListener("pause", () => updateSpeakerStatus(false));
-        speaker.audio.addEventListener("timeupdate", updateSpeakerTime);
-        speaker.audio.addEventListener("ended", handlePlayNext);
+        speaker.audio.addEventListener("loadeddata", () => initializeSong(speaker.id));
+        speaker.audio.addEventListener("play", () => updateSpeakerPlayingStatus(true, speaker.id));
+        speaker.audio.addEventListener("pause", () => updateSpeakerPlayingStatus(false, speaker.id));
+        speaker.audio.addEventListener("timeupdate", () => updateSpeakerTime(speaker.id));
+        speaker.audio.addEventListener("ended", () => handlePlayNext(speaker.id));
 
         return () => {
-            speaker.audio.removeEventListener("loadeddata", () => updateSpeakerStatus(true));
-            speaker.audio.removeEventListener("play", () => updateSpeakerStatus(true));
-            speaker.audio.removeEventListener("pause", () => updateSpeakerStatus(false));
-            speaker.audio.removeEventListener("timeupdate", updateSpeakerTime);
-            speaker.audio.removeEventListener("ended", handlePlayNext);
-            speaker.audio.remove();
-            updateSpeakerStatus(false);
+            speaker.audio.removeEventListener("loadeddata", () => initializeSong(speaker.id));
+            speaker.audio.removeEventListener("play", () => updateSpeakerPlayingStatus(true, speaker.id));
+            speaker.audio.removeEventListener("pause", () => updateSpeakerPlayingStatus(false, speaker.id));
+            speaker.audio.removeEventListener("timeupdate", () => updateSpeakerTime(speaker.id));
+            speaker.audio.removeEventListener("ended", () => handlePlayNext(speaker.id));
         };
-    }, [updateSpeakerStatus, speaker.audio, updateSpeakerTime, handlePlayNext]);
+    }, [updateSpeakerPlayingStatus, speaker.audio, updateSpeakerTime, handlePlayNext, initializeSong, speaker.id]);
 
     const handleToggleStatus = () => {
         if (speaker.playing) {
-            updateSpeakerStatus(false);
-        } else updateSpeakerStatus(true);
+            updateSpeakerPlayingStatus(false, speaker.id);
+        } else updateSpeakerPlayingStatus(true, speaker.id);
     };
 
     const handleSeek = (value: number) => {
-        const newTime = speaker.time * value;
+        const newTime = speaker.audio.duration * value;
         speaker.audio.currentTime = newTime;
     };
 
     const handleStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setDevices(ps => {
-            const speaker = ps.find(d => d.category === "speaker") as Speaker;
-            const a = speaker.changeStatus(e.target.checked);
-            return ps.map(d => (isSpeaker(d) ? a : d));
-        });
+        changeStatus(speaker.id, e.target.checked);
     };
 
-    const handleToggleLoop = () => {
-        setDevices(ps => {
-            const speaker = ps.find(d => d.category === "speaker") as Speaker;
-            const a = speaker.toggleLoopMode();
-            return ps.map(d => (isSpeaker(d) ? a : d));
-        });
-    };
-
-    const handleToggleShuffle = () => {
-        setDevices(ps => {
-            const speaker = ps.find(d => d.category === "speaker") as Speaker;
-            const a = speaker.toggleShuffle();
-            return ps.map(d => (isSpeaker(d) ? a : d));
-        });
-    };
-
-    const timePercent = speaker.time ? speaker.current_position / speaker.time : 0;
+    const timePercent = speaker.audio.currentTime ? speaker.audio.currentTime / speaker.audio.duration : 0;
 
     return (
         <section className={styles.wrapper}>
             <header>
                 <div className={styles.details}>
                     <h4>Speakers</h4>
-                    <p>{speaker.status ? "Playing" : "Not Playing"}</p>
+                    <p>{speaker.title}</p>
                 </div>
                 <Switch checked={speaker.status} onChange={handleStatusChange} />
             </header>
@@ -124,23 +74,23 @@ const Speakers = () => {
                 <CircularInput value={timePercent} onChange={handleSeek} style={{ width: "13rem", height: "13rem" }}>
                     <CircularTrack stroke={colors.primary500} strokeWidth="2px" />
                     <CircularProgress stroke={colors.primary100} strokeWidth="2px" />
-                    {speaker.time && <CircularThumb fill={colors.primary100} r="4px" />}
+                    {speaker.audio.duration && <CircularThumb fill={colors.primary100} r="4px" />}
                 </CircularInput>
             </div>
             <div className={styles.controls}>
-                <button onClick={handleToggleLoop} className={speaker.loop ? styles.loop : ""} title="Loop">
+                <button onClick={() => handleToggleLoop(speaker.id)} className={speaker.loop ? styles.loop : ""} title="Loop">
                     <TfiLoop size="1.5rem" />
                 </button>
-                <button onClick={handlePlayPrevious} title="Previous">
+                <button onClick={() => handlePlayPrevious(speaker.id)} title="Previous">
                     <TbPlayerTrackPrevFilled size="1.5rem" />
                 </button>
                 <button onClick={handleToggleStatus} className={styles.playPause} title="Play/Pause">
                     {speaker.playing ? <IoPause size="2rem" /> : <IoPlay size="2rem" />}
                 </button>
-                <button onClick={handlePlayNext} title="Next">
+                <button onClick={() => handlePlayNext(speaker.id)} title="Next">
                     <TbPlayerTrackNextFilled size="1.5rem" />
                 </button>
-                <button onClick={handleToggleShuffle} className={speaker.shuffle ? styles.shuffle : ""} title="Shuffle">
+                <button onClick={() => handleToggleShuffle(speaker.id)} className={speaker.shuffle ? styles.shuffle : ""} title="Shuffle">
                     <TfiControlShuffle size="1.5rem" />
                 </button>
             </div>

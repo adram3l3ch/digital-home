@@ -2,6 +2,12 @@ import { Speaker } from "../utils";
 
 export const PLAYLIST: Speaker["playlist"] = [
     {
+        id: "5",
+        album_cover:
+            "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fembed-testing.usmagazine.com%2Fwp-content%2Fuploads%2F2024%2F04%2FSabrina-Carpenter-Gets-You-Buzzed-off-New-Song-Espresso.jpg%3Fw%3D1200%26quality%3D86%26strip%3Dall&f=1&nofb=1&ipt=b337fa32e1cb39a9c581b897dd9b840deffc6f33e2a1c3ffd3c8fd0c0efff5a5&ipo=images",
+        src: "https://www.dropbox.com/scl/fi/5xcsz2kpl87ys34c6q8mn/espresso.mp3?rlkey=jzkuq34yhyq5nibv2k0dis7zt&st=sfqswyda&raw=1",
+    },
+    {
         id: "4",
         album_cover:
             "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FWv80WlK3rzI%2Fmaxresdefault.jpg&f=1&nofb=1&ipt=a796c63c78b3f96569ecb3016c8773bb0f49fd5b6df4f556781de1df26eb7daf&ipo=images",
