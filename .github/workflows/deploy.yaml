@@ -9,11 +9,11 @@ on:
 # Define the job to build and deploy the Vite app
 jobs:
     build:
-        runs-on: ubuntu-latest # The virtual machine environment to run the workflow
+        runs-on: ubuntu-latest
 
         permissions:
             id-token: write # Required for deployment
-            contents: read # Allows reading the repository contents
+            contents: write # Allows writing to repository (needed for GitHub Pages)
 
         steps:
             # Step 1: Check out the repository code
@@ -44,9 +44,10 @@ jobs:
     deploy:
         runs-on: ubuntu-latest
         needs: build
+
         permissions:
             id-token: write # Required for deployment
-            contents: read # Allows reading the repository contents
+            contents: write # Needed to push to GitHub Pages
 
         steps:
             # Step 6: Download the artifact for deployment
