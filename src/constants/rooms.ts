@@ -7,7 +7,7 @@ export const ROOMS = [
     {
         id: "bedroom",
         title: "Bedroom",
-        devices: ["bedroom_smart_lamp", "bedroom_vacuum_cleaner", "hexa_lamp"],
+        devices: ["bedroom_hexa_lamp", "bedroom_smart_lamp", "bedroom_vacuum_cleaner"],
         Icon: LuBedDouble,
     },
     {

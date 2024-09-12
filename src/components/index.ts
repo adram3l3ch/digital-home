@@ -6,3 +6,4 @@ export * from "./Lights";
 export * from "./Switch";
 export * from "./Slider";
 export * from "./Speakers";
+export * from "./Dropdown";

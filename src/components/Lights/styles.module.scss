@@ -15,6 +15,15 @@
         position: absolute;
         inset: var(--padding) var(--padding) auto var(--padding);
         z-index: 99;
+
+        .dropdown {
+            select {
+                @extend %header4;
+            }
+            option {
+                @extend %subtitle;
+            }
+        }
     }
 
     .lightsList {

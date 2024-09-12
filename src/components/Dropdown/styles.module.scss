@@ -1,0 +1,21 @@
+@import "../../styles/theme";
+@import "../../styles/typography";
+
+.wrapper {
+    background: transparent;
+    border: none;
+    @extend %subtitle;
+    color: $neutral;
+    text-transform: capitalize;
+    cursor: pointer;
+
+    option {
+        background: $primary300;
+
+        &:hover {
+            background: $primary600 !important;
+            color: black !important;
+        }
+    }
+    // appearance: none;;
+}
