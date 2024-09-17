@@ -25,11 +25,26 @@ const Speakers = () => {
     const speaker = devices.find(d => d.id === "speaker") as Speaker;
 
     useEffect(() => {
+        const handleMediaFunctionKeysPress = (event: KeyboardEvent) => {
+            switch (event.code) {
+                case "MediaTrackNext":
+                    console.log("object");
+                    handlePlayNext(speaker.id);
+                    break;
+                case "MediaTrackPrevious":
+                    handlePlayPrevious(speaker.id);
+                    break;
+                default:
+                    break;
+            }
+        };
+
         speaker.audio.addEventListener("loadeddata", () => initializeSong(speaker.id));
         speaker.audio.addEventListener("play", () => updateSpeakerPlayingStatus(true, speaker.id));
         speaker.audio.addEventListener("pause", () => updateSpeakerPlayingStatus(false, speaker.id));
         speaker.audio.addEventListener("timeupdate", () => updateSpeakerTime(speaker.id));
         speaker.audio.addEventListener("ended", () => handlePlayNext(speaker.id));
+        document.addEventListener("keydown", handleMediaFunctionKeysPress);
 
         return () => {
             speaker.audio.removeEventListener("loadeddata", () => initializeSong(speaker.id));
@@ -37,8 +52,9 @@ const Speakers = () => {
             speaker.audio.removeEventListener("pause", () => updateSpeakerPlayingStatus(false, speaker.id));
             speaker.audio.removeEventListener("timeupdate", () => updateSpeakerTime(speaker.id));
             speaker.audio.removeEventListener("ended", () => handlePlayNext(speaker.id));
+            document.removeEventListener("keydown", handleMediaFunctionKeysPress);
         };
-    }, [updateSpeakerPlayingStatus, speaker.audio, updateSpeakerTime, handlePlayNext, initializeSong, speaker.id]);
+    }, [updateSpeakerPlayingStatus, updateSpeakerTime, handlePlayNext, initializeSong, handlePlayPrevious, speaker.id, speaker.audio]);
 
     const handleToggleStatus = () => {
         if (speaker.playing) {
